@@ -2832,66 +2832,225 @@ Mesh GenMeshHeightmap(Image heightmap, Vector3 size)
     Vector3 vC = { 0 };
     Vector3 vN = { 0 };
 
-    for (int z = 0; z < mapZ-1; z++)
+    for (int z = 0; z < mapZ-2; z += 2)
     {
-        for (int x = 0; x < mapX-1; x++)
+        for (int x = 0; x < mapX-2; x += 2)
         {
             // Fill vertices array with data
             //----------------------------------------------------------
 
-            // one triangle - 3 vertex
-            mesh.vertices[vCounter] = (float)x*scaleFactor.x;
-            mesh.vertices[vCounter + 1] = GRAY_VALUE(pixels[x + z*mapX])*scaleFactor.y;
+            // Triangle 0
+            // 0,0
+            mesh.vertices[vCounter + 0] = (float)x*scaleFactor.x;
+            mesh.vertices[vCounter + 1] = GRAY_VALUE(pixels[z*mapX+x])*scaleFactor.y;
             mesh.vertices[vCounter + 2] = (float)z*scaleFactor.z;
-
+            // 1,0
             mesh.vertices[vCounter + 3] = (float)x*scaleFactor.x;
-            mesh.vertices[vCounter + 4] = GRAY_VALUE(pixels[x + (z + 1)*mapX])*scaleFactor.y;
-            mesh.vertices[vCounter + 5] = (float)(z + 1)*scaleFactor.z;
+            mesh.vertices[vCounter + 4] = GRAY_VALUE(pixels[(z+1)*mapX+x])*scaleFactor.y;
+            mesh.vertices[vCounter + 5] = (float)(z+1)*scaleFactor.z;
+            // 1,1
+            mesh.vertices[vCounter + 6] = (float)(x+1)*scaleFactor.x;
+            mesh.vertices[vCounter + 7] = GRAY_VALUE(pixels[(z+1)*mapX+(x+1)])*scaleFactor.y;
+            mesh.vertices[vCounter + 8] = (float)(z+1)*scaleFactor.z;
 
-            mesh.vertices[vCounter + 6] = (float)(x + 1)*scaleFactor.x;
-            mesh.vertices[vCounter + 7] = GRAY_VALUE(pixels[(x + 1) + z*mapX])*scaleFactor.y;
-            mesh.vertices[vCounter + 8] = (float)z*scaleFactor.z;
+            // Triangle 1
+            // 0,0
+            mesh.vertices[vCounter + 9]  = mesh.vertices[vCounter + 0];
+            mesh.vertices[vCounter + 10] = mesh.vertices[vCounter + 1];
+            mesh.vertices[vCounter + 11] = mesh.vertices[vCounter + 2];
+            // 0,1
+            mesh.vertices[vCounter + 12] = (float)(x+1)*scaleFactor.x;
+            mesh.vertices[vCounter + 13] = GRAY_VALUE(pixels[z*mapX+(x+1)])*scaleFactor.y;
+            mesh.vertices[vCounter + 14] = (float)z*scaleFactor.z;
+            // 1,1
+            mesh.vertices[vCounter + 15] = mesh.vertices[vCounter + 6];
+            mesh.vertices[vCounter + 16] = mesh.vertices[vCounter + 7];
+            mesh.vertices[vCounter + 17] = mesh.vertices[vCounter + 8];
 
-            // Another triangle - 3 vertex
-            mesh.vertices[vCounter + 9] = mesh.vertices[vCounter + 6];
-            mesh.vertices[vCounter + 10] = mesh.vertices[vCounter + 7];
-            mesh.vertices[vCounter + 11] = mesh.vertices[vCounter + 8];
+            // Triangle 2
+            // 0,1
+            mesh.vertices[vCounter + 18] = mesh.vertices[vCounter + 12];
+            mesh.vertices[vCounter + 19] = mesh.vertices[vCounter + 13];
+            mesh.vertices[vCounter + 20] = mesh.vertices[vCounter + 14];
+            // 0,2
+            mesh.vertices[vCounter + 21] = (float)(x+2)*scaleFactor.x;
+            mesh.vertices[vCounter + 22] = GRAY_VALUE(pixels[z*mapX+(x+2)])*scaleFactor.y;
+            mesh.vertices[vCounter + 23] = (float)z*scaleFactor.z;
+            // 1,1
+            mesh.vertices[vCounter + 24] = mesh.vertices[vCounter + 6];
+            mesh.vertices[vCounter + 25] = mesh.vertices[vCounter + 7];
+            mesh.vertices[vCounter + 26] = mesh.vertices[vCounter + 8];
 
-            mesh.vertices[vCounter + 12] = mesh.vertices[vCounter + 3];
-            mesh.vertices[vCounter + 13] = mesh.vertices[vCounter + 4];
-            mesh.vertices[vCounter + 14] = mesh.vertices[vCounter + 5];
+            // Triangle 3
+            // 0,2
+            mesh.vertices[vCounter + 27] = mesh.vertices[vCounter + 21];
+            mesh.vertices[vCounter + 28] = mesh.vertices[vCounter + 22];
+            mesh.vertices[vCounter + 29] = mesh.vertices[vCounter + 23];
+            // 1,2
+            mesh.vertices[vCounter + 30] = (float)(x+2)*scaleFactor.x;
+            mesh.vertices[vCounter + 31] = GRAY_VALUE(pixels[(z+1)*mapX+(x+2)])*scaleFactor.y;
+            mesh.vertices[vCounter + 32] = (float)(z+1)*scaleFactor.z;
+            // 1,1
+            mesh.vertices[vCounter + 33] = mesh.vertices[vCounter + 6];
+            mesh.vertices[vCounter + 34] = mesh.vertices[vCounter + 7];
+            mesh.vertices[vCounter + 35] = mesh.vertices[vCounter + 8];
 
-            mesh.vertices[vCounter + 15] = (float)(x + 1)*scaleFactor.x;
-            mesh.vertices[vCounter + 16] = GRAY_VALUE(pixels[(x + 1) + (z + 1)*mapX])*scaleFactor.y;
-            mesh.vertices[vCounter + 17] = (float)(z + 1)*scaleFactor.z;
-            vCounter += 18;     // 6 vertex, 18 floats
+            // Triangle 4
+            // 1,2
+            mesh.vertices[vCounter + 36] = mesh.vertices[vCounter + 30];
+            mesh.vertices[vCounter + 37] = mesh.vertices[vCounter + 31];
+            mesh.vertices[vCounter + 38] = mesh.vertices[vCounter + 32];
+            // 2,2
+            mesh.vertices[vCounter + 39] = (float)(x+2)*scaleFactor.x;
+            mesh.vertices[vCounter + 40] = GRAY_VALUE(pixels[(z+2)*mapX+(x+2)])*scaleFactor.y;
+            mesh.vertices[vCounter + 41] = (float)(z+2)*scaleFactor.z;
+            // 1,1
+            mesh.vertices[vCounter + 42] = mesh.vertices[vCounter + 6];
+            mesh.vertices[vCounter + 43] = mesh.vertices[vCounter + 7];
+            mesh.vertices[vCounter + 44] = mesh.vertices[vCounter + 8];
+
+            // Triangle 5
+            // 2,2
+            mesh.vertices[vCounter + 45] = mesh.vertices[vCounter + 39];
+            mesh.vertices[vCounter + 46] = mesh.vertices[vCounter + 40];
+            mesh.vertices[vCounter + 47] = mesh.vertices[vCounter + 41];
+            // 2,1
+            mesh.vertices[vCounter + 48] = (float)(x+1)*scaleFactor.x;
+            mesh.vertices[vCounter + 49] = GRAY_VALUE(pixels[(z+2)*mapX+(x+1)])*scaleFactor.y;
+            mesh.vertices[vCounter + 50] = (float)(z+2)*scaleFactor.z;
+            // 1,1
+            mesh.vertices[vCounter + 51] = mesh.vertices[vCounter + 6];
+            mesh.vertices[vCounter + 52] = mesh.vertices[vCounter + 7];
+            mesh.vertices[vCounter + 53] = mesh.vertices[vCounter + 8];
+
+            // Triangle 6
+            // 2,1
+            mesh.vertices[vCounter + 54] = mesh.vertices[vCounter + 48];
+            mesh.vertices[vCounter + 55] = mesh.vertices[vCounter + 49];
+            mesh.vertices[vCounter + 56] = mesh.vertices[vCounter + 50];
+            // 2,0
+            mesh.vertices[vCounter + 57] = (float)x*scaleFactor.x;
+            mesh.vertices[vCounter + 58] = GRAY_VALUE(pixels[(z+2)*mapX+x])*scaleFactor.y;
+            mesh.vertices[vCounter + 59] = (float)(z+2)*scaleFactor.z;
+            // 1,1
+            mesh.vertices[vCounter + 60] = mesh.vertices[vCounter + 6];
+            mesh.vertices[vCounter + 61] = mesh.vertices[vCounter + 7];
+            mesh.vertices[vCounter + 62] = mesh.vertices[vCounter + 8];
+
+            // Triangle 7
+            // 2,0
+            mesh.vertices[vCounter + 63] = mesh.vertices[vCounter + 57];
+            mesh.vertices[vCounter + 64] = mesh.vertices[vCounter + 58];
+            mesh.vertices[vCounter + 65] = mesh.vertices[vCounter + 59];
+            // 1,0
+            mesh.vertices[vCounter + 66] = mesh.vertices[vCounter + 3];
+            mesh.vertices[vCounter + 67] = mesh.vertices[vCounter + 4];
+            mesh.vertices[vCounter + 68] = mesh.vertices[vCounter + 5];
+            // 1,1
+            mesh.vertices[vCounter + 69] = mesh.vertices[vCounter + 6];
+            mesh.vertices[vCounter + 70] = mesh.vertices[vCounter + 7];
+            mesh.vertices[vCounter + 71] = mesh.vertices[vCounter + 8];
+
+            vCounter += 72;     // 24 vertex, 72 floats
 
             // Fill texcoords array with data
             //--------------------------------------------------------------
-            mesh.texcoords[tcCounter] = (float)x/(mapX - 1);
-            mesh.texcoords[tcCounter + 1] = (float)z/(mapZ - 1);
 
-            mesh.texcoords[tcCounter + 2] = (float)x/(mapX - 1);
-            mesh.texcoords[tcCounter + 3] = (float)(z + 1)/(mapZ - 1);
+            // Triangle 0
+            // 0,0
+            mesh.texcoords[tcCounter + 0] = (float)x/(mapX-1);
+            mesh.texcoords[tcCounter + 1] = (float)z/(mapZ-1);
+            // 1,0
+            mesh.texcoords[tcCounter + 2] = (float)x/(mapX-1);
+            mesh.texcoords[tcCounter + 3] = (float)(z+1)/(mapZ-1);
+            // 1,1
+            mesh.texcoords[tcCounter + 4] = (float)(x+1)/(mapX-1);
+            mesh.texcoords[tcCounter + 5] = (float)(z+1)/(mapZ-1);
 
-            mesh.texcoords[tcCounter + 4] = (float)(x + 1)/(mapX - 1);
-            mesh.texcoords[tcCounter + 5] = (float)z/(mapZ - 1);
+            // Triangle 1
+            // 0,0
+            mesh.texcoords[tcCounter + 6] = mesh.texcoords[tcCounter + 0];
+            mesh.texcoords[tcCounter + 7] = mesh.texcoords[tcCounter + 1];
+            // 0,1
+            mesh.texcoords[tcCounter + 8] = (float)(x+1)/(mapX-1);
+            mesh.texcoords[tcCounter + 9] = (float)z/(mapZ-1);
+            // 1,1
+            mesh.texcoords[tcCounter + 10] = mesh.texcoords[tcCounter + 4];
+            mesh.texcoords[tcCounter + 11] = mesh.texcoords[tcCounter + 5];
 
-            mesh.texcoords[tcCounter + 6] = mesh.texcoords[tcCounter + 4];
-            mesh.texcoords[tcCounter + 7] = mesh.texcoords[tcCounter + 5];
+            // Triangle 2
+            // 0,1
+            mesh.texcoords[tcCounter + 12] = mesh.texcoords[tcCounter + 8];
+            mesh.texcoords[tcCounter + 13] = mesh.texcoords[tcCounter + 9];
+            // 0,2
+            mesh.texcoords[tcCounter + 14] = (float)(x+2)/(mapX-1);
+            mesh.texcoords[tcCounter + 15] = (float)z/(mapZ-1);
+            // 1,1
+            mesh.texcoords[tcCounter + 16] = mesh.texcoords[tcCounter + 4];
+            mesh.texcoords[tcCounter + 17] = mesh.texcoords[tcCounter + 5];
 
-            mesh.texcoords[tcCounter + 8] = mesh.texcoords[tcCounter + 2];
-            mesh.texcoords[tcCounter + 9] = mesh.texcoords[tcCounter + 3];
+            // Triangle 3
+            // 0,2
+            mesh.texcoords[tcCounter + 18] = mesh.texcoords[tcCounter + 14];
+            mesh.texcoords[tcCounter + 19] = mesh.texcoords[tcCounter + 15];
+            // 1,2
+            mesh.texcoords[tcCounter + 20] = (float)(x+2)/(mapX-1);
+            mesh.texcoords[tcCounter + 21] = (float)(z+1)/(mapZ-1);
+            // 1,1
+            mesh.texcoords[tcCounter + 22] = mesh.texcoords[tcCounter + 4];
+            mesh.texcoords[tcCounter + 23] = mesh.texcoords[tcCounter + 5];
 
-            mesh.texcoords[tcCounter + 10] = (float)(x + 1)/(mapX - 1);
-            mesh.texcoords[tcCounter + 11] = (float)(z + 1)/(mapZ - 1);
-            tcCounter += 12;    // 6 texcoords, 12 floats
+            // Triangle 4
+            // 1,2
+            mesh.texcoords[tcCounter + 24] = mesh.texcoords[tcCounter + 20];
+            mesh.texcoords[tcCounter + 25] = mesh.texcoords[tcCounter + 21];
+            // 2,2
+            mesh.texcoords[tcCounter + 26] = (float)(x+2)/(mapX-1);
+            mesh.texcoords[tcCounter + 27] = (float)(z+2)/(mapZ-1);
+            // 1,1
+            mesh.texcoords[tcCounter + 28] = mesh.texcoords[tcCounter + 4];
+            mesh.texcoords[tcCounter + 29] = mesh.texcoords[tcCounter + 5];
+
+            // Triangle 5
+            // 2,2
+            mesh.texcoords[tcCounter + 30] = mesh.texcoords[tcCounter + 26];
+            mesh.texcoords[tcCounter + 31] = mesh.texcoords[tcCounter + 27];
+            // 2,1
+            mesh.texcoords[tcCounter + 32] = (float)(x+1)/(mapX-1);
+            mesh.texcoords[tcCounter + 33] = (float)(z+2)/(mapZ-1);
+            // 1,1
+            mesh.texcoords[tcCounter + 34] = mesh.texcoords[tcCounter + 4];
+            mesh.texcoords[tcCounter + 35] = mesh.texcoords[tcCounter + 5];
+
+            // Triangle 6
+            // 2,1
+            mesh.texcoords[tcCounter + 36] = mesh.texcoords[tcCounter + 32];
+            mesh.texcoords[tcCounter + 37] = mesh.texcoords[tcCounter + 33];
+            // 2,0
+            mesh.texcoords[tcCounter + 38] = (float)(x+0)/(mapX-1);
+            mesh.texcoords[tcCounter + 39] = (float)(z+2)/(mapZ-1);
+            // 1,1
+            mesh.texcoords[tcCounter + 40] = mesh.texcoords[tcCounter + 4];
+            mesh.texcoords[tcCounter + 41] = mesh.texcoords[tcCounter + 5];
+
+            // Triangle 7
+            // 2,0
+            mesh.texcoords[tcCounter + 42] = mesh.texcoords[tcCounter + 38];
+            mesh.texcoords[tcCounter + 43] = mesh.texcoords[tcCounter + 39];
+            // 1,0
+            mesh.texcoords[tcCounter + 44] = mesh.texcoords[tcCounter + 2];
+            mesh.texcoords[tcCounter + 45] = mesh.texcoords[tcCounter + 3];
+            // 1,1
+            mesh.texcoords[tcCounter + 46] = mesh.texcoords[tcCounter + 4];
+            mesh.texcoords[tcCounter + 47] = mesh.texcoords[tcCounter + 5];
+
+            tcCounter += 48;    // 24 texcoords, 48 floats
 
             // Fill normals array with data
             //--------------------------------------------------------------
-            for (int i = 0; i < 18; i += 9)
+            for (int i = 0; i < 72; i += 9)
             {
-                vA.x = mesh.vertices[nCounter + i];
+                vA.x = mesh.vertices[nCounter + i + 0];
                 vA.y = mesh.vertices[nCounter + i + 1];
                 vA.z = mesh.vertices[nCounter + i + 2];
 
@@ -2905,7 +3064,7 @@ Mesh GenMeshHeightmap(Image heightmap, Vector3 size)
 
                 vN = Vector3Normalize(Vector3CrossProduct(Vector3Subtract(vB, vA), Vector3Subtract(vC, vA)));
 
-                mesh.normals[nCounter + i] = vN.x;
+                mesh.normals[nCounter + i + 0] = vN.x;
                 mesh.normals[nCounter + i + 1] = vN.y;
                 mesh.normals[nCounter + i + 2] = vN.z;
 
@@ -2918,7 +3077,7 @@ Mesh GenMeshHeightmap(Image heightmap, Vector3 size)
                 mesh.normals[nCounter + i + 8] = vN.z;
             }
 
-            nCounter += 18;     // 6 vertex, 18 floats
+            nCounter += 72;     // 24 vertex, 72 floats
         }
     }
 
