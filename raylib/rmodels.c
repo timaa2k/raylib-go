@@ -2844,13 +2844,13 @@ Mesh GenMeshHeightmap(Image heightmap, Vector3 size)
             mesh.vertices[vCounter + 0] = (float)x*scaleFactor.x;
             mesh.vertices[vCounter + 1] = GRAY_VALUE(pixels[z*mapX+x])*scaleFactor.y;
             mesh.vertices[vCounter + 2] = (float)z*scaleFactor.z;
-            // 1,0
-            mesh.vertices[vCounter + 3] = (float)x*scaleFactor.x;
-            mesh.vertices[vCounter + 4] = GRAY_VALUE(pixels[(z+1)*mapX+x])*scaleFactor.y;
-            mesh.vertices[vCounter + 5] = (float)(z+1)*scaleFactor.z;
             // 1,1
-            mesh.vertices[vCounter + 6] = (float)(x+1)*scaleFactor.x;
-            mesh.vertices[vCounter + 7] = GRAY_VALUE(pixels[(z+1)*mapX+(x+1)])*scaleFactor.y;
+            mesh.vertices[vCounter + 3] = (float)(x+1)*scaleFactor.x;
+            mesh.vertices[vCounter + 4] = GRAY_VALUE(pixels[(z+1)*mapX+(x+1)])*scaleFactor.y;
+            mesh.vertices[vCounter + 5] = (float)(z+1)*scaleFactor.z;
+            // 1,0
+            mesh.vertices[vCounter + 6] = (float)x*scaleFactor.x;
+            mesh.vertices[vCounter + 7] = GRAY_VALUE(pixels[(z+1)*mapX+x])*scaleFactor.y;
             mesh.vertices[vCounter + 8] = (float)(z+1)*scaleFactor.z;
 
             // Triangle 1
@@ -2863,9 +2863,9 @@ Mesh GenMeshHeightmap(Image heightmap, Vector3 size)
             mesh.vertices[vCounter + 13] = GRAY_VALUE(pixels[z*mapX+(x+1)])*scaleFactor.y;
             mesh.vertices[vCounter + 14] = (float)z*scaleFactor.z;
             // 1,1
-            mesh.vertices[vCounter + 15] = mesh.vertices[vCounter + 6];
-            mesh.vertices[vCounter + 16] = mesh.vertices[vCounter + 7];
-            mesh.vertices[vCounter + 17] = mesh.vertices[vCounter + 8];
+            mesh.vertices[vCounter + 15] = mesh.vertices[vCounter + 3];
+            mesh.vertices[vCounter + 16] = mesh.vertices[vCounter + 4];
+            mesh.vertices[vCounter + 17] = mesh.vertices[vCounter + 5];
 
             // Triangle 2
             // 0,1
@@ -2877,9 +2877,9 @@ Mesh GenMeshHeightmap(Image heightmap, Vector3 size)
             mesh.vertices[vCounter + 22] = GRAY_VALUE(pixels[z*mapX+(x+2)])*scaleFactor.y;
             mesh.vertices[vCounter + 23] = (float)z*scaleFactor.z;
             // 1,1
-            mesh.vertices[vCounter + 24] = mesh.vertices[vCounter + 6];
-            mesh.vertices[vCounter + 25] = mesh.vertices[vCounter + 7];
-            mesh.vertices[vCounter + 26] = mesh.vertices[vCounter + 8];
+            mesh.vertices[vCounter + 24] = mesh.vertices[vCounter + 3];
+            mesh.vertices[vCounter + 25] = mesh.vertices[vCounter + 4];
+            mesh.vertices[vCounter + 26] = mesh.vertices[vCounter + 5];
 
             // Triangle 3
             // 0,2
@@ -2891,9 +2891,9 @@ Mesh GenMeshHeightmap(Image heightmap, Vector3 size)
             mesh.vertices[vCounter + 31] = GRAY_VALUE(pixels[(z+1)*mapX+(x+2)])*scaleFactor.y;
             mesh.vertices[vCounter + 32] = (float)(z+1)*scaleFactor.z;
             // 1,1
-            mesh.vertices[vCounter + 33] = mesh.vertices[vCounter + 6];
-            mesh.vertices[vCounter + 34] = mesh.vertices[vCounter + 7];
-            mesh.vertices[vCounter + 35] = mesh.vertices[vCounter + 8];
+            mesh.vertices[vCounter + 33] = mesh.vertices[vCounter + 3];
+            mesh.vertices[vCounter + 34] = mesh.vertices[vCounter + 4];
+            mesh.vertices[vCounter + 35] = mesh.vertices[vCounter + 5];
 
             // Triangle 4
             // 1,2
@@ -2905,9 +2905,9 @@ Mesh GenMeshHeightmap(Image heightmap, Vector3 size)
             mesh.vertices[vCounter + 40] = GRAY_VALUE(pixels[(z+2)*mapX+(x+2)])*scaleFactor.y;
             mesh.vertices[vCounter + 41] = (float)(z+2)*scaleFactor.z;
             // 1,1
-            mesh.vertices[vCounter + 42] = mesh.vertices[vCounter + 6];
-            mesh.vertices[vCounter + 43] = mesh.vertices[vCounter + 7];
-            mesh.vertices[vCounter + 44] = mesh.vertices[vCounter + 8];
+            mesh.vertices[vCounter + 42] = mesh.vertices[vCounter + 3];
+            mesh.vertices[vCounter + 43] = mesh.vertices[vCounter + 4];
+            mesh.vertices[vCounter + 44] = mesh.vertices[vCounter + 5];
 
             // Triangle 5
             // 2,2
@@ -2919,9 +2919,9 @@ Mesh GenMeshHeightmap(Image heightmap, Vector3 size)
             mesh.vertices[vCounter + 49] = GRAY_VALUE(pixels[(z+2)*mapX+(x+1)])*scaleFactor.y;
             mesh.vertices[vCounter + 50] = (float)(z+2)*scaleFactor.z;
             // 1,1
-            mesh.vertices[vCounter + 51] = mesh.vertices[vCounter + 6];
-            mesh.vertices[vCounter + 52] = mesh.vertices[vCounter + 7];
-            mesh.vertices[vCounter + 53] = mesh.vertices[vCounter + 8];
+            mesh.vertices[vCounter + 51] = mesh.vertices[vCounter + 3];
+            mesh.vertices[vCounter + 52] = mesh.vertices[vCounter + 4];
+            mesh.vertices[vCounter + 53] = mesh.vertices[vCounter + 5];
 
             // Triangle 6
             // 2,1
@@ -2933,9 +2933,9 @@ Mesh GenMeshHeightmap(Image heightmap, Vector3 size)
             mesh.vertices[vCounter + 58] = GRAY_VALUE(pixels[(z+2)*mapX+x])*scaleFactor.y;
             mesh.vertices[vCounter + 59] = (float)(z+2)*scaleFactor.z;
             // 1,1
-            mesh.vertices[vCounter + 60] = mesh.vertices[vCounter + 6];
-            mesh.vertices[vCounter + 61] = mesh.vertices[vCounter + 7];
-            mesh.vertices[vCounter + 62] = mesh.vertices[vCounter + 8];
+            mesh.vertices[vCounter + 60] = mesh.vertices[vCounter + 3];
+            mesh.vertices[vCounter + 61] = mesh.vertices[vCounter + 4];
+            mesh.vertices[vCounter + 62] = mesh.vertices[vCounter + 5];
 
             // Triangle 7
             // 2,0
@@ -2943,13 +2943,13 @@ Mesh GenMeshHeightmap(Image heightmap, Vector3 size)
             mesh.vertices[vCounter + 64] = mesh.vertices[vCounter + 58];
             mesh.vertices[vCounter + 65] = mesh.vertices[vCounter + 59];
             // 1,0
-            mesh.vertices[vCounter + 66] = mesh.vertices[vCounter + 3];
-            mesh.vertices[vCounter + 67] = mesh.vertices[vCounter + 4];
-            mesh.vertices[vCounter + 68] = mesh.vertices[vCounter + 5];
+            mesh.vertices[vCounter + 66] = mesh.vertices[vCounter + 6];
+            mesh.vertices[vCounter + 67] = mesh.vertices[vCounter + 7];
+            mesh.vertices[vCounter + 68] = mesh.vertices[vCounter + 8];
             // 1,1
-            mesh.vertices[vCounter + 69] = mesh.vertices[vCounter + 6];
-            mesh.vertices[vCounter + 70] = mesh.vertices[vCounter + 7];
-            mesh.vertices[vCounter + 71] = mesh.vertices[vCounter + 8];
+            mesh.vertices[vCounter + 69] = mesh.vertices[vCounter + 3];
+            mesh.vertices[vCounter + 70] = mesh.vertices[vCounter + 4];
+            mesh.vertices[vCounter + 71] = mesh.vertices[vCounter + 5];
 
             vCounter += 72;     // 24 vertex, 72 floats
 
@@ -2960,13 +2960,12 @@ Mesh GenMeshHeightmap(Image heightmap, Vector3 size)
             // 0,0
             mesh.texcoords[tcCounter + 0] = (float)x/(mapX-1);
             mesh.texcoords[tcCounter + 1] = (float)z/(mapZ-1);
-            // 1,0
-            mesh.texcoords[tcCounter + 2] = (float)x/(mapX-1);
-            mesh.texcoords[tcCounter + 3] = (float)(z+1)/(mapZ-1);
             // 1,1
-            mesh.texcoords[tcCounter + 4] = (float)(x+1)/(mapX-1);
+            mesh.texcoords[tcCounter + 2] = (float)(x+1)/(mapX-1);
+            mesh.texcoords[tcCounter + 3] = (float)(z+1)/(mapZ-1);
+            // 1,0
+            mesh.texcoords[tcCounter + 4] = (float)x/(mapX-1);
             mesh.texcoords[tcCounter + 5] = (float)(z+1)/(mapZ-1);
-
             // Triangle 1
             // 0,0
             mesh.texcoords[tcCounter + 6] = mesh.texcoords[tcCounter + 0];
@@ -2975,8 +2974,8 @@ Mesh GenMeshHeightmap(Image heightmap, Vector3 size)
             mesh.texcoords[tcCounter + 8] = (float)(x+1)/(mapX-1);
             mesh.texcoords[tcCounter + 9] = (float)z/(mapZ-1);
             // 1,1
-            mesh.texcoords[tcCounter + 10] = mesh.texcoords[tcCounter + 4];
-            mesh.texcoords[tcCounter + 11] = mesh.texcoords[tcCounter + 5];
+            mesh.texcoords[tcCounter + 10] = mesh.texcoords[tcCounter + 2];
+            mesh.texcoords[tcCounter + 11] = mesh.texcoords[tcCounter + 3];
 
             // Triangle 2
             // 0,1
@@ -2986,8 +2985,8 @@ Mesh GenMeshHeightmap(Image heightmap, Vector3 size)
             mesh.texcoords[tcCounter + 14] = (float)(x+2)/(mapX-1);
             mesh.texcoords[tcCounter + 15] = (float)z/(mapZ-1);
             // 1,1
-            mesh.texcoords[tcCounter + 16] = mesh.texcoords[tcCounter + 4];
-            mesh.texcoords[tcCounter + 17] = mesh.texcoords[tcCounter + 5];
+            mesh.texcoords[tcCounter + 16] = mesh.texcoords[tcCounter + 2];
+            mesh.texcoords[tcCounter + 17] = mesh.texcoords[tcCounter + 3];
 
             // Triangle 3
             // 0,2
@@ -2997,8 +2996,8 @@ Mesh GenMeshHeightmap(Image heightmap, Vector3 size)
             mesh.texcoords[tcCounter + 20] = (float)(x+2)/(mapX-1);
             mesh.texcoords[tcCounter + 21] = (float)(z+1)/(mapZ-1);
             // 1,1
-            mesh.texcoords[tcCounter + 22] = mesh.texcoords[tcCounter + 4];
-            mesh.texcoords[tcCounter + 23] = mesh.texcoords[tcCounter + 5];
+            mesh.texcoords[tcCounter + 22] = mesh.texcoords[tcCounter + 2];
+            mesh.texcoords[tcCounter + 23] = mesh.texcoords[tcCounter + 3];
 
             // Triangle 4
             // 1,2
@@ -3008,8 +3007,8 @@ Mesh GenMeshHeightmap(Image heightmap, Vector3 size)
             mesh.texcoords[tcCounter + 26] = (float)(x+2)/(mapX-1);
             mesh.texcoords[tcCounter + 27] = (float)(z+2)/(mapZ-1);
             // 1,1
-            mesh.texcoords[tcCounter + 28] = mesh.texcoords[tcCounter + 4];
-            mesh.texcoords[tcCounter + 29] = mesh.texcoords[tcCounter + 5];
+            mesh.texcoords[tcCounter + 28] = mesh.texcoords[tcCounter + 2];
+            mesh.texcoords[tcCounter + 29] = mesh.texcoords[tcCounter + 3];
 
             // Triangle 5
             // 2,2
@@ -3019,8 +3018,8 @@ Mesh GenMeshHeightmap(Image heightmap, Vector3 size)
             mesh.texcoords[tcCounter + 32] = (float)(x+1)/(mapX-1);
             mesh.texcoords[tcCounter + 33] = (float)(z+2)/(mapZ-1);
             // 1,1
-            mesh.texcoords[tcCounter + 34] = mesh.texcoords[tcCounter + 4];
-            mesh.texcoords[tcCounter + 35] = mesh.texcoords[tcCounter + 5];
+            mesh.texcoords[tcCounter + 34] = mesh.texcoords[tcCounter + 2];
+            mesh.texcoords[tcCounter + 35] = mesh.texcoords[tcCounter + 3];
 
             // Triangle 6
             // 2,1
@@ -3030,19 +3029,19 @@ Mesh GenMeshHeightmap(Image heightmap, Vector3 size)
             mesh.texcoords[tcCounter + 38] = (float)(x+0)/(mapX-1);
             mesh.texcoords[tcCounter + 39] = (float)(z+2)/(mapZ-1);
             // 1,1
-            mesh.texcoords[tcCounter + 40] = mesh.texcoords[tcCounter + 4];
-            mesh.texcoords[tcCounter + 41] = mesh.texcoords[tcCounter + 5];
+            mesh.texcoords[tcCounter + 40] = mesh.texcoords[tcCounter + 2];
+            mesh.texcoords[tcCounter + 41] = mesh.texcoords[tcCounter + 3];
 
             // Triangle 7
             // 2,0
             mesh.texcoords[tcCounter + 42] = mesh.texcoords[tcCounter + 38];
             mesh.texcoords[tcCounter + 43] = mesh.texcoords[tcCounter + 39];
             // 1,0
-            mesh.texcoords[tcCounter + 44] = mesh.texcoords[tcCounter + 2];
-            mesh.texcoords[tcCounter + 45] = mesh.texcoords[tcCounter + 3];
+            mesh.texcoords[tcCounter + 44] = mesh.texcoords[tcCounter + 4];
+            mesh.texcoords[tcCounter + 45] = mesh.texcoords[tcCounter + 5];
             // 1,1
-            mesh.texcoords[tcCounter + 46] = mesh.texcoords[tcCounter + 4];
-            mesh.texcoords[tcCounter + 47] = mesh.texcoords[tcCounter + 5];
+            mesh.texcoords[tcCounter + 46] = mesh.texcoords[tcCounter + 2];
+            mesh.texcoords[tcCounter + 47] = mesh.texcoords[tcCounter + 3];
 
             tcCounter += 48;    // 24 texcoords, 48 floats
 
